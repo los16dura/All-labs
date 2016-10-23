@@ -30,4 +30,4 @@ for i in inp:
              print(dictionary[j],znak,end = '') # через write
         else:
              print(j,znak,end = '')
-    print()
+    print(end='')
