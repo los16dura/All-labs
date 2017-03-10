@@ -1,44 +1,13 @@
+__author__ = 'student'
+import networkx as nx
+import matplotlib.pyplot as plt
 
 
-def bfs_fire(graph, start, fired=None):
-    path = {start: 0}
-    if fired is None:
-        fired = set()
-    fired.add(start)
-    Q = [start]
-    while Q: #пока список не пуст
-        current = Q.pop(0)
-        for neighbour in graph[current]:
-            if neighbour not in fired:
-                fired.add(neighbour)
-                Q.append(neighbour)
-                path[neighbour] = path[current]+1
-    for i in range(0, m+1):
-        if i in path:
-            print(path[i])
-            #print(neighbour)
+G = nx.Graph()
+M = int(input())
+for i in range(M):
+    ver1, ver2 , weight = input().split()
+    G.add_edge(ver1, ver2, weight = int(weight))
 
-
-def read_graph_as_matrix(n,m):
-    graph = [[0]*n for i in range(n)]
-    for j in range(m):
-        a, b = [int(x) for x in input().split()]
-        c = min(a, b)
-        d = max(a, b)
-        graph[c][d] = d
-        graph[d][c] = c
-    return graph
-
-
-def read_graph_as_lists(n,m):
-    graph = [[] for i in range(n)]
-    for edge in range(m):
-        a,b = [int(x) for x in input().split()]
-        graph[a].append(b)
-        graph[b].append(a)
-    return graph
-
-n, m = [int(x) for x in input().split()]
-A = read_graph_as_lists(n, m)
-#print(A)
-bfs_fire(A,0)
+nx.draw_circular(G)
+plt.show()
